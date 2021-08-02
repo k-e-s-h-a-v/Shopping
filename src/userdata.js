@@ -17,8 +17,7 @@ export function Userdata(initialFValues) {
   const read = (loginValues) => {
     if (localStorage.getItem("email") === loginValues.email) {
       if (localStorage.getItem("pass") === loginValues.password) {
-        
-        ReactDOM.render(<Greet />, window.documentElement);
+        ReactDOM.render(<Greet />, document.getElementById("ac"));
       }else{
         alert("please check your password")
       }
