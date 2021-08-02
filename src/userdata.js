@@ -9,15 +9,16 @@ export function Userdata(initialFValues) {
     console.log(data);
     // console.log(data["email"]);
     // return data;
-  }
+  };
 
-//   function read = (data) {
-//    console.log
-//   }
+  const read = (loginValues) => {
 
-    return {
-    //   read,
-      write,
-    };
-  }
+    console.log(loginValues);
+    console.log(data);
+  };
 
+  return {
+    read,
+    write,
+  };
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import Controls from "../components/controls/Controls";
 import { useForm, Form } from "../components/useForm";
-import { Userdata, read, write} from "../userdata";
+import { Userdata } from "../userdata";
 import { Grid, Paper, Avatar, Typography } from "@material-ui/core"
 
 const genderItems = [

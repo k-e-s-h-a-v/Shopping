@@ -3,6 +3,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Controls from "../components/controls/Controls";
 import { useForm, Form } from "../components/useForm";
 import { Grid, Paper, Avatar, Typography } from "@material-ui/core";
+import { Userdata } from "../userdata";
+
 
 const initialFValues = {
   email: "",
@@ -30,10 +32,13 @@ export default function SignInForm() {
   const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
     useForm(initialFValues, true, validate);
 
+  const { read } = Userdata(initialFValues);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
-      console.log(values);
+      read(values);
+      // console.log(values);
       resetForm();
     }
   };
