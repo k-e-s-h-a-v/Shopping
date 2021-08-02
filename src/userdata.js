@@ -6,7 +6,8 @@ export function Userdata(initialFValues) {
 
   const write = (values) => {
     setData(values);
-    console.log(data["email"]);
+    console.log(data);
+    // console.log(data["email"]);
     // return data;
   }
 
