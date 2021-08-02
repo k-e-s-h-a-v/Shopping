@@ -42,7 +42,7 @@ export default function SignUpForm() {
       temp.password = fieldValues.password ? "" : "This field is required.";
     if ("confPass" in fieldValues)
     // temp.confPass = /${fieldValues.password}^/.test(fieldValues.confPass)? "" : "Passwords do not match.";
-    temp.confPass = fieldValues.confPass == fieldValues.password ? "" : "Passwords do not match.";
+      temp.confPass = fieldValues.confPass == fieldValues.password ? "" : "Passwords do not match.";
     setErrors({
       ...temp,
     });
@@ -59,7 +59,7 @@ export default function SignUpForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
-      write(values);
+      // write(values);
       // console.log(values);
       resetForm();
     }
