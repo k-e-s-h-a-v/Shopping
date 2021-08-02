@@ -3,18 +3,18 @@ import React, { useState } from "react";
 
 export function Userdata(initialFValues) {
   const [data, setData] = useState(initialFValues);
-
+  let email;
   const write = (values) => {
     setData(values);
-    console.log(data);
+    email = values.email;
+    console.log(email);
     // console.log(data["email"]);
     // return data;
   };
 
   const read = (loginValues) => {
-
     console.log(loginValues);
-    console.log(data);
+    console.log(email);
   };
 
   return {
