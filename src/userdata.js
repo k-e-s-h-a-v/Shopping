@@ -17,11 +17,14 @@ export function Userdata(initialFValues) {
   };
 
   const read = (loginValues) => {
-    console.log(loginValues);
-    if (localStorage.getItem("email") === loginValues.email) {
-
-      console.log("SKAJDGKJASD");
-    }
+    console.log(loginValues.email);
+    // if (localStorage.getItem("email") === loginValues.email) {
+    //   if (localStorage.getItem("pass") === loginValues.pass) {
+    //   alert("Successfully logged in")
+    //   }else{
+    //     alert("please check your password")
+    //   }
+    // }
   };
 
   return {
