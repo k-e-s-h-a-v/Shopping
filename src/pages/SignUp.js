@@ -60,7 +60,6 @@ export default function SignUpForm() {
     event.preventDefault();
     if (validate()) {
       write(values);
-      // console.log(values);
       resetForm();
     }
   };

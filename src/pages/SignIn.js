@@ -38,7 +38,6 @@ export default function SignInForm() {
     event.preventDefault();
     if (validate()) {
       read(values);
-      // console.log(values);
       resetForm();
     }
   };
