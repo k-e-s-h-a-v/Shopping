@@ -59,7 +59,7 @@ export default function SignUpForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
-      // write(values);
+      write(values);
       // console.log(values);
       resetForm();
     }

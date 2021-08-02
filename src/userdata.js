@@ -18,7 +18,10 @@ export function Userdata(initialFValues) {
 
   const read = (loginValues) => {
     console.log(loginValues);
-    console.log(email);
+    if (localStorage.getItem("email") === loginValues.email) {
+
+      console.log("SKAJDGKJASD");
+    }
   };
 
   return {
