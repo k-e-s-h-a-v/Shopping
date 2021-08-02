@@ -17,7 +17,10 @@ export function Userdata(initialFValues) {
   };
 
   const read = (loginValues) => {
+    localStorage.getItem("email")
     console.log(loginValues.email);
+    localStorage.getItem("pass")
+    console.log(loginValues.pass);
     if (localStorage.getItem("email") == loginValues.email) {
       if (localStorage.getItem("pass") == loginValues.pass) {
         alert("Successfully logged in")
