@@ -21,15 +21,15 @@ export function Userdata(initialFValues) {
     console.log(loginValues.email);
     localStorage.getItem("pass")
     console.log(loginValues.pass);
-    if (localStorage.getItem("email") == loginValues.email) {
-      if (localStorage.getItem("pass") == loginValues.pass) {
-        alert("Successfully logged in")
-      }else{
-        alert("please check your password")
-      }
-    }else{
-      alert("wrong email")
-    }
+    // if (localStorage.getItem("email") == loginValues.email) {
+    //   if (localStorage.getItem("pass") == loginValues.pass) {
+    //     alert("Successfully logged in")
+    //   }else{
+    //     alert("please check your password")
+    //   }
+    // }else{
+    //   alert("wrong email")
+    // }
   };
 
   return {
