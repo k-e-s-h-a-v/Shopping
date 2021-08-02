@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Greet from './components/Functional-Component'
-export function Userdata(initialFValues) {
+import ReactDOM from 'react-dom';
 
+export function Userdata(initialFValues) {
   let email, pass;
   const write = (values) => {
     email = values.email;
@@ -14,9 +15,10 @@ export function Userdata(initialFValues) {
   };
 
   const read = (loginValues) => {
-    if (localStorage.getItem("email") == loginValues.email) {
-      if (localStorage.getItem("pass") == loginValues.password) {
-        <Greet />
+    if (localStorage.getItem("email") === loginValues.email) {
+      if (localStorage.getItem("pass") === loginValues.password) {
+        
+        ReactDOM.render(<Greet />, window.documentElement);
       }else{
         alert("please check your password")
       }
