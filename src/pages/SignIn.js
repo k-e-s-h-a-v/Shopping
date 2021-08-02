@@ -81,7 +81,6 @@ export default function SignInForm() {
               onChange={handleInputChange}
               error={errors.password}
               type = "password"
-              
             />
             <Controls.Checkbox
               name="remember"

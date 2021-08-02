@@ -2,26 +2,29 @@ import React, { useState, useEffect } from "react";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import Controls from "../components/controls/Controls";
 import { useForm, Form } from "../components/useForm";
+import { Userdata, read, write} from "../userdata";
 import { Grid, Paper, Avatar, Typography } from "@material-ui/core"
+
 const genderItems = [
   { id: "male", title: "Male" },
   { id: "female", title: "Female" },
   { id: "other", title: "Other" },
 ];
 
-const initialFValues = {
+export const initialFValues = {
   fullName: "",
   email: "",
   mobile: "",
   gender: "male",
   who: "",
-  dob: new Date(),
+  // dob: new Date(),
   terms: false,
   password: "",
   confPass: "",
 };
 
 export default function SignUpForm() {
+  
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("fullName" in fieldValues)
@@ -38,7 +41,8 @@ export default function SignUpForm() {
     if ("password" in fieldValues)
       temp.password = fieldValues.password ? "" : "This field is required.";
     if ("confPass" in fieldValues)
-      temp.confPass = fieldValues.confPass === fieldValues.password? "" : "Passwords do not match.";
+    // temp.confPass = /${fieldValues.password}^/.test(fieldValues.confPass)? "" : "Passwords do not match.";
+    temp.confPass = fieldValues.confPass == fieldValues.password ? "" : "Passwords do not match.";
     setErrors({
       ...temp,
     });
@@ -50,10 +54,13 @@ export default function SignUpForm() {
   const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
     useForm(initialFValues, true, validate);
 
+  const { write } = Userdata(initialFValues);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
-      console.log(values);
+      write(values);
+      // console.log(values);
       resetForm();
     }
   };
@@ -79,7 +86,8 @@ export default function SignUpForm() {
     { id: "3", title: "Professional" },
   ];
 
-  return (
+  return (<div>
+
     <Form onSubmit={handleSubmit}>
       <Grid>
         <Paper elevation={20} style={paperStyle}>
@@ -162,5 +170,7 @@ export default function SignUpForm() {
         </Paper>
       </Grid>
     </Form>
+    {/* <UserData /> */}
+    </div>
   );
 }
