@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import Controls from "../components/controls/Controls";
 import { useForm, Form } from "../components/useForm";
-import { Userdata } from "../userdata";
-import { Grid, Paper, Avatar, Typography } from "@material-ui/core"
+import { Grid, Paper, Avatar, Typography } from "@material-ui/core";
 
 const genderItems = [
   { id: "male", title: "Male" },
@@ -23,10 +22,12 @@ export const initialFValues = {
   confPass: "",
 };
 
-export default function SignUpForm() {
-  
+function SignUpForm({ write }) {
+
   const validate = (fieldValues = values) => {
+    console.log(values);
     let temp = { ...errors };
+
     if ("fullName" in fieldValues)
       temp.fullName = fieldValues.fullName ? "" : "This field is required.";
     if ("email" in fieldValues)
@@ -41,24 +42,45 @@ export default function SignUpForm() {
     if ("password" in fieldValues)
       temp.password = fieldValues.password ? "" : "This field is required.";
     if ("confPass" in fieldValues)
-    // temp.confPass = /${fieldValues.password}^/.test(fieldValues.confPass)? "" : "Passwords do not match.";
-      temp.confPass = fieldValues.confPass == fieldValues.password ? "" : "Passwords do not match.";
+      temp.confPass =
+        values.password === fieldValues.confPass
+          ? ""
+          : "Passwords do not match.";
     setErrors({
       ...temp,
     });
 
     if (fieldValues === values)
-      return Object.values(temp).every((x) => x === "");
+      return Object.values(temp).every((message) => message === "");
   };
 
-  const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
-    useForm(initialFValues, true, validate);
+  const { 
+    values, 
+    setValues,
+    errors, 
+    setErrors, 
+    handleInputChange, 
+    resetForm } = useForm(initialFValues, true, validate);
 
-  const { write } = Userdata(initialFValues);
+  // const { write } = Userdata(initialFValues);
+
+  // useEffect(() => {
+  //   setUsers([...users, user]);
+  // },[user]);
+
+  // useEffect(() => {
+  //   sender();
+  //   // console.log(users);
+  // },[users]);
+
+  // const sender = () => {
+  //   sendData(users);
+  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
+      // console.log(values);
       write(values);
       resetForm();
     }
@@ -85,91 +107,95 @@ export default function SignUpForm() {
     { id: "3", title: "Professional" },
   ];
 
-  return (<div>
-
-    <Form onSubmit={handleSubmit}>
-      <Grid>
-        <Paper elevation={20} style={paperStyle}>
-          <Grid align="center">
-            <Avatar style={avatarStyle}>
-              <AddCircleOutlineOutlinedIcon />
-            </Avatar>
-            <h2 style={headerStyle}>Sign Up</h2>
-            <Typography variant="caption">
-              Please fill the form to sign up
-            </Typography>
-          </Grid>
-          <Grid align="center">
-            <Controls.Input
-              name="fullName"
-              label="Full Name"
-              value={values.fullName}
-              onChange={handleInputChange}
-              error={errors.fullName}
-            />
-            <Controls.Input
-              label="Email"
-              name="email"
-              value={values.email}
-              onChange={handleInputChange}
-              error={errors.email}
-            />
-            <Controls.Input
-              label="Mobile"
-              name="mobile"
-              value={values.mobile}
-              onChange={handleInputChange}
-              error={errors.mobile}
-            />
-            <Controls.RadioGroup
-              name="gender"
-              label="Gender"
-              value={values.gender}
-              onChange={handleInputChange}
-              items={genderItems}
-            />
-            <Controls.Select
-              name="who"
-              label="Are you a"
-              value={values.who}
-              onChange={handleInputChange}
-              options={profession()}
-              error={errors.who}
-            />
-            {/* <Controls.DatePicker
+  return (
+    <div>
+      <Form onSubmit={handleSubmit}>
+        <Grid>
+          <Paper elevation={20} style={paperStyle}>
+            <Grid align="center">
+              <Avatar style={avatarStyle}>
+                <AddCircleOutlineOutlinedIcon />
+              </Avatar>
+              <h2 style={headerStyle}>Sign Up</h2>
+              <Typography variant="caption">
+                Please fill the form to sign up
+              </Typography>
+            </Grid>
+            <Grid align="center">
+              <Controls.Input
+                name="fullName"
+                label="Full Name"
+                value={values.fullName}
+                onChange={handleInputChange}
+                error={errors.fullName}
+              />
+              <Controls.Input
+                label="Email"
+                name="email"
+                value={values.email}
+                onChange={handleInputChange}
+                error={errors.email}
+              />
+              <Controls.Input
+                label="Mobile"
+                name="mobile"
+                value={values.mobile}
+                onChange={handleInputChange}
+                error={errors.mobile}
+              />
+              <Controls.RadioGroup
+                name="gender"
+                label="Gender"
+                value={values.gender}
+                onChange={handleInputChange}
+                items={genderItems}
+              />
+              <Controls.Select
+                name="who"
+                label="Are you a"
+                value={values.who}
+                onChange={handleInputChange}
+                options={profession()}
+                error={errors.who}
+              />
+              {/* <Controls.DatePicker
               name="dob"
               label="Date of Birth"
               value={values.dob}
               onChange={handleInputChange}
             /> */}
-            <Controls.Input
-              name="password"
-              label="Password"
-              value={values.password}
-              onChange={handleInputChange}
-              error={errors.password}
-              type="password"
-            />
-            <Controls.Input
-              name="confPass"
-              type="password"
-              label="Confirm Password"
-              value={values.confPass}
-              onChange={handleInputChange}
-              error={errors.confPass}
-            />
-            <Controls.Checkbox
-              name="terms"
-              label="I have read Terms and conditions"
-              value={values.terms}
-              onChange={handleInputChange}
-            />
-            <Controls.Button type="submit" text="Submit" />
-          </Grid>
-        </Paper>
-      </Grid>
-    </Form>
-    {/* <UserData /> */}
+              <Controls.Input
+                name="password"
+                type="password"
+                label="Password"
+                value={values.password}
+                onChange={handleInputChange}
+                error={errors.password}
+              />
+              {values.password}
+              <Controls.Input
+                name="confPass"
+                type="password"
+                label="Confirm Password"
+                value={values.confPass}
+                onChange={handleInputChange}
+                error={errors.confPass}
+              />
+              {values.confPass}
+
+              <Controls.Checkbox
+                name="terms"
+                label="I have read Terms and conditions"
+                value={values.terms}
+                onChange={handleInputChange}
+              />
+              <Controls.Button type="submit" text="Submit" />
+            </Grid>
+          </Paper>
+        </Grid>
+      </Form>
     </div>
   );
 }
+
+export default SignUpForm;

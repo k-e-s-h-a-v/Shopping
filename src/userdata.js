@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Greet from './components/Functional-Component'
+import Greet from './components/Shop'
 import ReactDOM from 'react-dom';
 
 export function Userdata(initialFValues) {
@@ -8,8 +8,6 @@ export function Userdata(initialFValues) {
     email = values.email;
     pass = values.password;
     console.log(values);
-    // console.log(email);
-    // console.log(pass);
     localStorage.setItem("email", email);
     localStorage.setItem("pass", pass);
   };

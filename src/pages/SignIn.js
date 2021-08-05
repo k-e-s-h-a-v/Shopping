@@ -12,7 +12,8 @@ const initialFValues = {
   remember: false,
 };
 
-export default function SignInForm() {
+export default function SignInForm({users, read}) {
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("password" in fieldValues)
@@ -32,12 +33,12 @@ export default function SignInForm() {
   const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
     useForm(initialFValues, true, validate);
 
-  const { read } = Userdata(initialFValues);
+  // const { read } = Userdata(initialFValues);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
-      read(values);
+      read(users, values);
       resetForm();
     }
   };
