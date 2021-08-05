@@ -51,7 +51,7 @@ function App() {
         <Switch>
           <Route path="/signup" render={() => <SignUpForm write={write} />} />
           <Route path="/signin" render={() => <SignInForm users={users} read={read} />} />
-          <Route path="/shop" component={Shop } />
+          <Route path="/shop" render={() => <Shop />} />
         </Switch>
       </Router>
     </div>
