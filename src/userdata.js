@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Greet from './components/Shop'
+// import Greet from './components/Shop'
 import ReactDOM from 'react-dom';
 
 export function Userdata(initialFValues) {
@@ -15,7 +15,7 @@ export function Userdata(initialFValues) {
   const read = (loginValues) => {
     if (localStorage.getItem("email") === loginValues.email) {
       if (localStorage.getItem("pass") === loginValues.password) {
-        ReactDOM.render(<Greet />, document.getElementById("ac"));
+        // ReactDOM.render(<Greet />, document.getElementById("ac"));
       }else{
         alert("please check your password")
       }

@@ -172,7 +172,7 @@ function SignUpForm({ write }) {
                 onChange={handleInputChange}
                 error={errors.password}
               />
-              {values.password}
+              {/* {values.password} */}
               <Controls.Input
                 name="confPass"
                 type="password"
@@ -181,7 +181,7 @@ function SignUpForm({ write }) {
                 onChange={handleInputChange}
                 error={errors.confPass}
               />
-              {values.confPass}
+              {/* {values.confPass} */}
 
               <Controls.Checkbox
                 name="terms"

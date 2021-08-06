@@ -8,6 +8,7 @@ import {
   Badge,
   makeStyles,
 } from "@material-ui/core";
+
 import PlaylistAddOutlinedIcon from "@material-ui/icons/PlaylistAddOutlined";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";

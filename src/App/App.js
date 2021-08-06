@@ -3,10 +3,12 @@ import SignUpForm from "../pages/SignUp";
 import SignInForm from "../pages/SignIn";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Shop from '../shopComponents/Shop'
+// import Data from '../shopComponents/source'
 import ReactDOM from 'react-dom';
 // import Example from "../pages/Cards";
 
 function App() {
+  
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({
     email: "",
