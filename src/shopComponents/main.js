@@ -3,14 +3,6 @@ import MyCard from "./Card";
 import { Grid } from "@material-ui/core/";
 
 function Main() {
-  const objSlice = (obj, upto) => {
-    let filteredKeys = Object.keys(obj).slice(0, upto);
-    let newObj = {};
-    filteredKeys.forEach((key) => {
-      newObj[key] = obj[key];
-    });
-    return newObj;
-  };
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,14 +15,12 @@ function Main() {
   };
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/photos/4")
+    fetch("https://jsonplaceholder.typicode.com/photos")
       .then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result);
-          // console.log(objSlice(result, 3));
-          // console.log(typeof(result));
+          setItems(result.slice(0,10));
         },
         (error) => {
           setIsLoaded(true);
@@ -45,10 +35,11 @@ function Main() {
     return <div>Loading...</div>;
   } else {
     return (
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         {items.map((item) => (
-          <Grid md={2}>
+          <Grid >
             <MyCard
+              id={item.id}
               img={item.thumbnailUrl}
               title={
                 item.title.charAt(0).toUpperCase() + // works too -> item.title[0].toUpperCase()

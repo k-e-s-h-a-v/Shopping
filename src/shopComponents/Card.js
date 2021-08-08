@@ -11,7 +11,7 @@ import {
 
 function MyCard(props) {
   return (
-    <Card md={4}>
+    <Card key={props.id} item md={3}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -33,7 +33,7 @@ function MyCard(props) {
         <Button size="small" color="secondary">
           Add to wishlist
         </Button>
-        <Button size="small" color="primary" onClick={props.addToCart}>
+        <Button size="small" color="primary" onClick={()=>console.log(props.title)}>
           Add to cart
         </Button>
       </CardActions>
