@@ -7,7 +7,11 @@ import {
   Typography,
   CardMedia,
   CardActionArea,
+  IconButton,
 } from "@material-ui/core";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import PlaylistAddOutlinedIcon from "@material-ui/icons/PlaylistAddOutlined";
+import ShareIcon from '@material-ui/icons/Share';
 
 function MyCard(props) {
   return (
@@ -30,12 +34,21 @@ function MyCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="secondary">
+      <IconButton color="secondary" aria-label="add to wishlist">
+        <PlaylistAddOutlinedIcon />
+      </IconButton>
+      <IconButton aria-label="share" color="green">
+          <ShareIcon />
+        </IconButton>
+        {/* <Button size="small" color="secondary">
           Add to wishlist
-        </Button>
-        <Button size="small" color="primary" onClick={()=>console.log(props.title)}>
+        </Button> */}
+        <IconButton color="primary" aria-label="add to shopping cart">
+          <AddShoppingCartIcon />
+        </IconButton>
+        {/* <Button size="small" color="primary" onClick={()=>console.log(props.title)}>
           Add to cart
-        </Button>
+        </Button> */}
       </CardActions>
     </Card>
   );

@@ -13,7 +13,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
     });
     if (validateOnChange) validate({ [name]: value });
     
-    console.log(event.target.name, event.target.value);
+    // console.log(event.target.name, event.target.value);
   };
 
   const resetForm = () => {

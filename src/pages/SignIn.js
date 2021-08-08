@@ -3,8 +3,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Controls from "../components/controls/Controls";
 import { useForm, Form } from "../components/useForm";
 import { Grid, Paper, Avatar, Typography } from "@material-ui/core";
-import { Userdata } from "../userdata";
-import ReactDOM from 'react-dom';
+// import { Userdata } from "../userdata";
+import ReactDOM from "react-dom";
+import Shop from '../shopComponents/Shop'
 
 const initialFValues = {
   email: "",
@@ -12,8 +13,7 @@ const initialFValues = {
   remember: false,
 };
 
-export default function SignInForm({users, read}) {
-
+export default function SignInForm({ users }) {
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("password" in fieldValues)
@@ -38,15 +38,21 @@ export default function SignInForm({users, read}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
-      read(users, values);
-      resetForm();
+      // console.log(users)
+      for (const item of users) {
+        if (item.email === values.email && item.password === values.password) {
+          // window.alert("allowed");
+          ReactDOM.render(<Shop />, document.getElementById("forShop"));
+        } else console.log("wrong credentials");
+        resetForm();
+      }
     }
   };
 
   const paperStyle = {
-    padding: "30px 20px",
+    padding: "30px 10px",
     width: "400px",
-    margin: "20px auto",
+    margin: "0 auto",
     align: "center",
   };
 
@@ -60,45 +66,45 @@ export default function SignInForm({users, read}) {
 
   return (
     <div id="ac">
-    <Form onSubmit={handleSubmit}>
-      <Grid>
-        <Paper elevation={20} style={paperStyle}>
-          <Grid align="center">
-            <Avatar style={avatarStyle}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <h2 style={headerStyle}>Sign In</h2>
-            <Typography variant="caption">
-              Enter Email and password to login
-            </Typography>
-          </Grid>
-          <Grid align="center">
-            <Controls.Input
-              label="Email"
-              name="email"
-              value={values.email}
-              onChange={handleInputChange}
-              error={errors.email}
-            />
-            <Controls.Input
-              name="password"
-              label="Password"
-              value={values.password}
-              onChange={handleInputChange}
-              error={errors.password}
-              type = "password"
-            />
-            <Controls.Checkbox
-              name="remember"
-              label="Remember Me"
-              value={values.remember}
-              onChange={handleInputChange}
-            />
-            <Controls.Button type="submit" text="Sign In" />
-          </Grid>
-        </Paper>
-      </Grid>
-    </Form>
+      <Form onSubmit={handleSubmit}>
+        <Grid>
+          <Paper style={paperStyle}>
+            <Grid align="center">
+              <Avatar style={avatarStyle}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <h2 style={headerStyle}>Sign In</h2>
+              <Typography variant="caption">
+                Enter Email and password to login
+              </Typography>
+            </Grid>
+            <Grid align="center">
+              <Controls.Input
+                label="Email"
+                name="email"
+                value={values.email}
+                onChange={handleInputChange}
+                error={errors.email}
+              />
+              <Controls.Input
+                name="password"
+                label="Password"
+                value={values.password}
+                onChange={handleInputChange}
+                error={errors.password}
+                type="password"
+              />
+              <Controls.Checkbox
+                name="remember"
+                label="Remember Me"
+                value={values.remember}
+                onChange={handleInputChange}
+              />
+              <Controls.Button type="submit" text="Sign In" />
+            </Grid>
+          </Paper>
+        </Grid>
+      </Form>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 
-import PlaylistAddOutlinedIcon from "@material-ui/icons/PlaylistAddOutlined";
+import FormatListNumberedOutlinedIcon from '@material-ui/icons/FormatListNumberedOutlined';
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SearchIcon from "@material-ui/icons/Search";
@@ -48,7 +48,7 @@ export default function Header() {
         <Tooltip title="Wishlist">
           <IconButton>
             <Badge badgeContent={4} color="primary">
-              <PlaylistAddOutlinedIcon fontSize="medium" />
+              <FormatListNumberedOutlinedIcon fontSize="medium" />
             </Badge>
           </IconButton>
         </Tooltip>

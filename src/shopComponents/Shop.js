@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import clsx from "clsx";
 
 import InboxIcon from "@material-ui/icons/MoveToInbox";
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SideDrawer() {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);

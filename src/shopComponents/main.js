@@ -35,7 +35,7 @@ function Main() {
     return <div>Loading...</div>;
   } else {
     return (
-      <Grid container spacing={3}>
+      <Grid container spacing={4}>
         {items.map((item) => (
           <Grid >
             <MyCard

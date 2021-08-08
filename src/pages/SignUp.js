@@ -22,10 +22,10 @@ export const initialFValues = {
   confPass: "",
 };
 
-function SignUpForm({ write }) {
+function SignUpForm({ setUser }) {
 
   const validate = (fieldValues = values) => {
-    console.log(values);
+    // console.log(values);
     let temp = { ...errors };
 
     if ("fullName" in fieldValues)
@@ -81,16 +81,16 @@ function SignUpForm({ write }) {
     event.preventDefault();
     if (validate()) {
       // console.log(values);
-      write(values);
+      // write(values);
+      setUser({ email: values.email, password: values.password });
       resetForm();
     }
   };
 
   const paperStyle = {
-    padding: "30px 20px",
+    padding: "30px 10px",
     width: "400px",
-    margin: "20px auto",
-    align: "center",
+    margin: "0 auto",
   };
 
   const avatarStyle = {
@@ -111,7 +111,7 @@ function SignUpForm({ write }) {
     <div>
       <Form onSubmit={handleSubmit}>
         <Grid>
-          <Paper elevation={20} style={paperStyle}>
+          <Paper style={paperStyle}>
             <Grid align="center">
               <Avatar style={avatarStyle}>
                 <AddCircleOutlineOutlinedIcon />
