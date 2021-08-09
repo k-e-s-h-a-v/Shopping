@@ -1,11 +1,16 @@
-import React, {useState} from "react";
+import React, { useState, useEffect} from "react";
 import clsx from "clsx";
 
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+
+import LocalOfferOutlinedIcon from "@material-ui/icons/LocalOfferOutlined";
+import StorefrontOutlinedIcon from "@material-ui/icons/StorefrontOutlined";
+import ViewQuiltOutlinedIcon from "@material-ui/icons/ViewQuiltOutlined";
+import SwapHorizOutlinedIcon from "@material-ui/icons/SwapHorizOutlined";
+import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
+import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 
 import {
   AppBar,
@@ -97,7 +102,23 @@ const useStyles = makeStyles((theme) => ({
 export default function SideDrawer() {
   const classes = useStyles();
   const theme = useTheme();
+
   const [open, setOpen] = useState(false);
+  const [cart, setCart] = useState([]);
+  const [wish, setWish] = useState([]);
+
+  useEffect(() => {
+    console.log(wish);
+  }, [wish]);
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
+  const delFromCart = (e) => {
+    let name = e.target.value;
+    setCart(cart((item) => item !== name));
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -128,7 +149,7 @@ export default function SideDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Header />
+          <Header cartCount={cart.length} wishCount={wish.length} />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -155,21 +176,41 @@ export default function SideDrawer() {
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button key={"Offers"}>
+            <ListItemIcon>
+              <LocalOfferOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Offers"} />
+          </ListItem>
+          <ListItem button key={"Deals"}>
+            <ListItemIcon>
+              <StorefrontOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Deals"} />
+          </ListItem>
+          <ListItem button key={"Orders"}>
+            <ListItemIcon>
+              <ViewQuiltOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Orders"} />
+          </ListItem>
+          <ListItem button key={"Transections"}>
+            <ListItemIcon>
+              <SwapHorizOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Transections"} />
+          </ListItem>
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
+          {["Account", "Setting"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? (
+                  <AccountCircleOutlinedIcon />
+                ) : (
+                  <SettingsOutlinedIcon />
+                )}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -178,7 +219,7 @@ export default function SideDrawer() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-      <Main />
+        <Main cart={cart} setCart={setCart} wish={wish} setWish={setWish} />
       </main>
     </div>
   );

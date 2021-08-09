@@ -40,8 +40,8 @@ const Container = () => {
 
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    email: "intern@albanero.in",
+    password: "dev",
   });
 
   useEffect(() => {
@@ -49,8 +49,10 @@ const Container = () => {
   }, [user]);
 
   useEffect(() => {
+    // setUsers(users.filter(item => item.email === ""));
     console.log(users);
   }, [users]);
+
 
   return (
     <div id="forShop">

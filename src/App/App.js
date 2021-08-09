@@ -9,10 +9,6 @@ import ReactDOM from 'react-dom';
 // import Example from "../pages/Cards";
 
 function App() {
-
-
-
-
   // const check = (user, users) => {
   //   // console.log(values);
   //   let found = false;

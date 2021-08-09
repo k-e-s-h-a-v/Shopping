@@ -2,17 +2,11 @@ import React, { useState, useEffect } from "react";
 import MyCard from "./Card";
 import { Grid } from "@material-ui/core/";
 
-function Main() {
+function Main({cart, setCart, wish, setWish,}) {
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const [cart, setCart] = useState([]);
-
-  const addToCart = () => {
-    // setCart([...cart, items.title])
-    // console.log(title);
-  };
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/photos")
@@ -45,8 +39,10 @@ function Main() {
                 item.title.charAt(0).toUpperCase() + // works too -> item.title[0].toUpperCase()
                 item.title.slice(1, item.title.search(" "))
               }
-              addToCart={addToCart}
-              // description=""
+              cart={cart}
+              setCart={setCart}
+              wish={wish}
+              setWish={setWish}
             />
           </Grid>
         ))}

@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header() {
+export default function Header({ cartCount, wishCount }) {
   const classes = useStyles();
 
   return (
@@ -47,14 +47,14 @@ export default function Header() {
       <Grid item>
         <Tooltip title="Wishlist">
           <IconButton>
-            <Badge badgeContent={4} color="primary">
+            <Badge badgeContent={wishCount} color="primary">
               <FormatListNumberedOutlinedIcon fontSize="medium" />
             </Badge>
           </IconButton>
         </Tooltip>
         <Tooltip title="Cart">
           <IconButton>
-            <Badge badgeContent={3} color="secondary">
+            <Badge badgeContent={cartCount} color="secondary">
               <ShoppingCartOutlinedIcon fontSize="medium" />
             </Badge>
           </IconButton>
