@@ -49,7 +49,6 @@ const Container = () => {
   }, [user]);
 
   useEffect(() => {
-    // setUsers(users.filter(item => item.email === ""));
     console.log(users);
   }, [users]);
 
@@ -74,7 +73,7 @@ const Container = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <SignUpForm setUser={setUser}/>
-        </TabPanel>
+        </TabPanel> 
       </Paper>
     </div>
   );

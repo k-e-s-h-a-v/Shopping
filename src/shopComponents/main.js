@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import MyCard from "./Card";
 import { Grid } from "@material-ui/core/";
 
-function Main({cart, setCart, wish, setWish,}) {
-
+function Main({ cart, setCart, wish, setWish }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
+  const random = Math.floor(Math.random() * 4500);
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/photos")
       .then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result.slice(0,10));
+          setItems(result.slice(random, random + 20));
         },
         (error) => {
           setIsLoaded(true);
@@ -29,9 +29,14 @@ function Main({cart, setCart, wish, setWish,}) {
     return <div>Loading...</div>;
   } else {
     return (
-      <Grid container spacing={4}>
+      <Grid
+        item
+        container
+        spacing={2}
+        // style={{padding:20}}
+      >
         {items.map((item) => (
-          <Grid >
+          <Grid>
             <MyCard
               id={item.id}
               img={item.thumbnailUrl}

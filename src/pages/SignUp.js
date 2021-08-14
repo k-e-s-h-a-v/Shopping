@@ -64,19 +64,6 @@ function SignUpForm({ setUser }) {
 
   // const { write } = Userdata(initialFValues);
 
-  // useEffect(() => {
-  //   setUsers([...users, user]);
-  // },[user]);
-
-  // useEffect(() => {
-  //   sender();
-  //   // console.log(users);
-  // },[users]);
-
-  // const sender = () => {
-  //   sendData(users);
-  // }
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {

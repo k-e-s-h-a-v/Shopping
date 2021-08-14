@@ -1,36 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
 import SignUpForm from "../pages/SignUp";
 import SignInForm from "../pages/SignIn";
-import Container from "../pages/Container"; //important
+import Container from "../pages/Container";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Shop from "../shopComponents/Shop";
+import Shop from '../shopComponents/Shop'
+// import Data from '../shopComponents/source'
+import ReactDOM from 'react-dom';
+// import Example from "../pages/Cards";
 
 function App() {
-  //redux action
-  const addUser = (user) => ({
-    type: "UPDATE_USERS",
-    payload: user,
-  });
 
-  const users = useSelector((state) => state.users);
-  const state = useSelector((state) => state);
-  
-  const dispatch = useDispatch();
-
+  const [users, setUsers] = useState([]);
   const [user, setUser] = useState({
     email: "intern@albanero.in",
     password: "dev",
   });
 
   useEffect(() => {
-    dispatch(addUser(user));
+    setUsers([...users, user]);
   }, [user]);
 
   useEffect(() => {
     console.log(users);
-    console.log(state);
   }, [users]);
 
   return (
@@ -38,20 +29,10 @@ function App() {
       {/* <Container /> */}
       {/* <Example/> */}
       {/* <SignInForm users={users} /> */}
-      {/* <UserList /> */}
-
       <Router>
         <Switch>
-          <Route
-            exact
-            path="/signup"
-            render={() => <SignUpForm setUser={setUser} />}
-          />
-          <Route
-            exact
-            path="/signin"
-            component={() => <SignInForm />}
-          />
+          <Route exact path="/signup" render={() => <SignUpForm setUser={setUser} />} />
+          <Route exact path="/signin" component={() => <SignInForm users={users} />} />
           {/* <Route exact path="/signin" render={() => <SignInForm users={users}  />} /> */}
           <Route exact path="/shop" render={() => <Shop />} />
         </Switch>

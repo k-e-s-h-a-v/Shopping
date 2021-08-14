@@ -14,7 +14,6 @@ import PlaylistAddOutlinedIcon from "@material-ui/icons/PlaylistAddOutlined";
 import ShareIcon from "@material-ui/icons/Share";
 
 function MyCard({ id, img, title, cart, setCart, wish, setWish }) {
-
   return (
     <Card key={id} item md={3}>
       <CardActionArea>
@@ -45,6 +44,7 @@ function MyCard({ id, img, title, cart, setCart, wish, setWish }) {
         >
           <PlaylistAddOutlinedIcon />
         </IconButton>
+
         <IconButton aria-label="share" color="green">
           <ShareIcon />
         </IconButton>

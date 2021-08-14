@@ -34,6 +34,7 @@ import {
 
 import Main from "./main";
 import Header from "./Header";
+import TemporaryDrawer from "./Cart-Items";
 
 const drawerWidth = 240;
 
@@ -86,10 +87,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toolbar: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: theme.spacing(0, 1),
+    // display: "flex",
+    // alignItems: "center",
+    // justifyContent: "flex-end",
+    // padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
@@ -114,11 +115,6 @@ export default function SideDrawer() {
   useEffect(() => {
     console.log(cart);
   }, [cart]);
-
-  const delFromCart = (e) => {
-    let name = e.target.value;
-    setCart(cart((item) => item !== name));
-  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -149,7 +145,7 @@ export default function SideDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Header cartCount={cart.length} wishCount={wish.length} />
+          <Header cart={cart} setCart={setCart} wish={wish} setWish={setWish}/>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -221,6 +217,7 @@ export default function SideDrawer() {
         <div className={classes.toolbar} />
         <Main cart={cart} setCart={setCart} wish={wish} setWish={setWish} />
       </main>
+      {/* <TemporaryDrawer /> */}
     </div>
   );
 }

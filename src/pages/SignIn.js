@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Controls from "../components/controls/Controls";
 import { useForm, Form } from "../components/useForm";
 import { Grid, Paper, Avatar, Typography } from "@material-ui/core";
+import { BrowserRouter as Router, Switch, Route, Redirect, useHistory } from "react-router-dom";
+
 // import { Userdata } from "../userdata";
 import ReactDOM from "react-dom";
-import Shop from '../shopComponents/Shop'
+import Shop from "../shopComponents/Shop";
 
 const initialFValues = {
   email: "",
@@ -13,7 +17,9 @@ const initialFValues = {
   remember: false,
 };
 
-export default function SignInForm({ users }) {
+export default function SignInForm() {
+  const users = useSelector((state) => state.users);
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
     if ("password" in fieldValues)
@@ -33,17 +39,22 @@ export default function SignInForm({ users }) {
   const { values, setValues, errors, setErrors, handleInputChange, resetForm } =
     useForm(initialFValues, true, validate);
 
+  const history = useHistory();
   // const { read } = Userdata(initialFValues);
-
+  // console.log(React.version);
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
-      // console.log(users)
+      console.log(users);
       for (const item of users) {
         if (item.email === values.email && item.password === values.password) {
+          history.push("/shop");
           // window.alert("allowed");
-          ReactDOM.render(<Shop />, document.getElementById("forShop"));
-        } else console.log("wrong credentials");
+          // ReactDOM.render(<Shop />, document.getElementById("forShop"));
+        } else {
+          console.log("wrong credentials");
+          <Redirect to="/signin" />
+        }
         resetForm();
       }
     }
