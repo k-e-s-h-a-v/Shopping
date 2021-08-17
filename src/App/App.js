@@ -15,7 +15,6 @@ function App() {
   });
 
   const users = useSelector((state) => state.users);
-  const state = useSelector((state) => state);
   
   const dispatch = useDispatch();
 
@@ -30,7 +29,6 @@ function App() {
 
   useEffect(() => {
     console.log(users);
-    console.log(state);
   }, [users]);
 
   return (
@@ -39,7 +37,7 @@ function App() {
       {/* <Example/> */}
       {/* <SignInForm users={users} /> */}
       {/* <UserList /> */}
-
+      {/* <SignInForm /> */}
       <Router>
         <Switch>
           <Route
