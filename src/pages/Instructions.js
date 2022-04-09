@@ -10,7 +10,10 @@ import {
     Typography,
 } from "@material-ui/core";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
-
+const linkStylle = {
+    textDecoration: "none",
+    color: "blue",
+};
 const listItems = [
     <span>
         Defaults:
@@ -23,7 +26,7 @@ const listItems = [
             </li>
         </ul>
         you can
-        <Link to="/signin" style={{ textDecoration: "none" }}>
+        <Link to="/signin" style={linkStylle}>
             {" "}
             Sign In{" "}
         </Link>
@@ -31,7 +34,7 @@ const listItems = [
     </span>,
     <span>
         you can
-        <Link to="/signup" style={{ textDecoration: "none" }}>
+        <Link to="/signup" style={linkStylle}>
             {" "}
             Sign Up{" "}
         </Link>
@@ -39,21 +42,15 @@ const listItems = [
     </span>,
     <span>
         you can directly go to my
-        <Link to="/shop" style={{ textDecoration: "none" }}>
+        <Link to="/shop" style={linkStylle}>
             &nbsp;E-commerce website
         </Link>
-        <br/>
-        What Works:
+        <br />
+        What works:
         <ul>
-            <li>
-                Opening / closing of sidebar
-            </li>
-            <li>
-                adding / removing items from cart
-            </li>
-            <li>
-                Sign in and Sign up page
-            </li>
+            <li>Opening / closing of sidebar</li>
+            <li>adding / removing items from cart</li>
+            <li>Sign in and Sign up page</li>
         </ul>
     </span>,
 ];
@@ -61,10 +58,10 @@ const paperStyle = {
     padding: "30px 10px",
     width: "400px",
     margin: "0 auto",
-    backgroundColor: "#caffff",
+    backgroundColor: "#ffffbe",
 };
 const Instructions = () => (
-    <Grid style={{ marginTop: '15vh' }}>
+    <Grid style={{ marginTop: "15vh" }}>
         <Paper style={paperStyle}>
             <Typography variant="h5" align="center">
                 Instructions
