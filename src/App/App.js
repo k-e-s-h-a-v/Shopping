@@ -3,59 +3,61 @@ import { useSelector, useDispatch } from "react-redux";
 
 import SignUpForm from "../pages/SignUp";
 import SignInForm from "../pages/SignIn";
+import Instructions from "../pages/Instructions";
 import Container from "../pages/Container"; //important
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Shop from "../shopComponents/Shop";
 
 function App() {
-  //redux action
-  const addUser = (user) => ({
-    type: "UPDATE_USERS",
-    payload: user,
-  });
+    //redux action
+    const addUser = (user) => ({
+        type: "UPDATE_USERS",
+        payload: user,
+    });
 
-  const users = useSelector((state) => state.users);
-  
-  const dispatch = useDispatch();
+    const users = useSelector((state) => state.users);
 
-  const [user, setUser] = useState({
-    email: "intern@albanero.in",
-    password: "dev",
-  });
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(addUser(user));
-  }, [user]);
+    const [user, setUser] = useState({
+        email: "keshav@demo.com",
+        password: "dev",
+    });
 
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
+    useEffect(() => {
+        dispatch(addUser(user));
+    }, [user]);
 
-  return (
-    <div>
-      {/* <Container /> */}
-      {/* <Example/> */}
-      {/* <SignInForm users={users} /> */}
-      {/* <UserList /> */}
-      {/* <SignInForm /> */}
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path="/signup"
-            render={() => <SignUpForm setUser={setUser} />}
-          />
-          <Route
-            exact
-            path="/signin"
-            component={() => <SignInForm />}
-          />
-          {/* <Route exact path="/signin" render={() => <SignInForm users={users}  />} /> */}
-          <Route exact path="/shop" render={() => <Shop />} />
-        </Switch>
-      </Router>
-    </div>
-  );
+    useEffect(() => {
+        console.log(users);
+    }, [users]);
+
+    return (
+        <div>
+            {/* <Container /> */}
+            {/* <Example/> */}
+            {/* <SignInForm users={users} /> */}
+            {/* <UserList /> */}
+            {/* <SignInForm /> */}
+            <Router>
+                <Switch>
+                    <Route exact path="/" render={() => <Instructions />} />
+                    <Route
+                        exact
+                        path="/signup"
+                        render={() => <SignUpForm setUser={setUser} />}
+                    />
+                    <Route
+                        exact
+                        path="/signin"
+                        component={() => <SignInForm />}
+                    />
+                    {/* <Route exact path="/signin" render={() => <SignInForm users={users}  />} /> */}
+                    <Route exact path="/shop" render={() => <Shop />} />
+                </Switch>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
