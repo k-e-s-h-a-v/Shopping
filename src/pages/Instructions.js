@@ -41,17 +41,18 @@ const listItems = [
         and create an account.
     </span>,
     <span>
-        you can directly go to my
-        <Link to="/shop" style={linkStylle}>
-            &nbsp;E-commerce website
-        </Link>
-        <br />
         What works:
         <ul>
             <li>Opening / closing of sidebar</li>
             <li>adding / removing items from cart</li>
             <li>Sign in and Sign up page</li>
         </ul>
+    </span>,
+    <span>
+        you can directly go to my
+        <Link to="/shop" style={linkStylle}>
+            &nbsp;E-commerce website
+        </Link>
     </span>,
 ];
 const paperStyle = {

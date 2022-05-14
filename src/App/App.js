@@ -41,7 +41,7 @@ function App() {
             {/* <SignInForm /> */}
             <Router>
                 <Switch>
-                    <Route exact path="/" render={() => <Instructions />} />
+                    <Route exact path="/Shopping" render={() => <Instructions />} />
                     <Route
                         exact
                         path="/signup"
