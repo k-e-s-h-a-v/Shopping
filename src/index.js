@@ -5,31 +5,36 @@ import { Provider } from "react-redux";
 import "./index.css";
 import App from "./App/App";
 import reportWebVitals from "./reportWebVitals";
+import { HashRouter } from 'react-router-dom';
 
 const initialState = {
-  users: [],
+    users: [],
 };
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "UPDATE_USERS":
-      return {
-        ...state,
-        users: state.users.concat(action.payload),
-      };
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case "UPDATE_USERS":
+            return {
+                ...state,
+                users: state.users.concat(action.payload),
+            };
+        default:
+            return state;
+    }
 };
 export default reducer;
 
 const store = createStore(reducer);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
+    <React.StrictMode>
+        <HashRouter>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </HashRouter>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
